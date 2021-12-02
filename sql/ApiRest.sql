@@ -1,6 +1,6 @@
 -- Crear tablas
 
--- Crear tabla artÃ­culos
+-- Crear tabla artículos
 create table articulos(
 	id 				int AUTO_INCREMENT,
 	descripcion		varchar(100),
@@ -11,7 +11,7 @@ create table articulos(
 
 -- El autoincrementable se puede especificar en cualquier momento
 
--- Ver descripciÃ³n de la tabla
+-- Ver descripción de la tabla
 desc articulos;
 
 -- Insertar datos
