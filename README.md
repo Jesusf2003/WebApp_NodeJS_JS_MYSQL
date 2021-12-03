@@ -1,5 +1,23 @@
 # WebApp_NodeJS_JS_MYSQL
 
+## Tecnologías y herramientas utilizadas
+
+- Base de datos MySQL v8.0
+- Workbench y/o DBeaver
+- Navegador web
+- JavaScript
+- Html5
+- Visual Studio Code
+- Nodejs v16.10.0
+- AlertifyJS
+- Live Share
+- Postman
+- Gestor de paquetes npm v7.24
+    1. Bootstrap
+    2. nodemon
+    3. Driver de conexión mysql
+    4. ExpressJS
+
 ## Instalar y conectar MySQL con Node.js
 
 ### Instalar Node.js
