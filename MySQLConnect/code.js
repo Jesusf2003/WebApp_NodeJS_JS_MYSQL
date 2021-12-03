@@ -10,7 +10,15 @@ const formArticulo = document.querySelector("form");
 const descripcion = document.getElementById("descripcion");
 const precio = document.getElementById("precio");
 const stock = document.getElementById("stock");
+const estado = document.getElementById("estado");
 var opcion = "";
+
+function NumFormatter (data) {
+	return parseFloat(data).toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
+	});
+};
 
 btnCrear.addEventListener("click", () => {
     descripcion.value = "";
@@ -20,17 +28,24 @@ btnCrear.addEventListener("click", () => {
     opcion = "crear";
 });
 
+function NumFormatter (data) {
+	return parseFloat(data).toLocaleString(undefined, {
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
+	});
+};
+
 //funcion para mostrar los resultados
 const mostrar = (articulos) => {
     articulos.forEach((articulo) => {
         resultados += `<tr>
-                            <td>${articulo.id}</td>
+                            <td style="text-align:center;">${articulo.id}</td>
                             <td>${articulo.descripcion}</td>
-                            <td>${articulo.precio}</td>
-                            <td>${articulo.stock}</td>
+                            <td style="text-align:center;">${articulo.precio}</td>
+                            <td style="text-align:center;">${articulo.stock}</td>
                             <td class="text-center">
-                                <a class="btnEditar btn btn-primary">Editar</a>
-                                <a class="btnBorrar btn btn-danger">Borrar</a></td>
+                                <i style="margin-right: 0.5em" class="btnEditar bi bi-pencil-square"></i>
+                                <i style="margin-left: 0.5em" class="btnBorrar bi bi-trash"></i>
                        </tr>
                     `;
     });
@@ -52,7 +67,7 @@ const on = (element, event, selector, handler) => {
 };
 
 // Procedimiento para eliminar de la base de datos
-on(document, "click", ".btnBorrar", e => {
+/* on(document, "click", ".btnBorrar", e => {
     const fila = e.target.parentNode.parentNode;
     const id = fila.firstElementChild.innerHTML;
     alertify.confirm("This is a confirm dialog.",
@@ -71,7 +86,31 @@ on(document, "click", ".btnBorrar", e => {
         function () {
             alertify.error('Eliminación candelada');
         });
-});
+}); */
+
+on(document, "click", ".btnBorrar",
+    e => {
+        const fila = e.target.parentNode.parentNode;
+        const id = fila.firstElementChild.innerHTML;
+        alertify.confirm('¿Está seguro de eliminar este producto?',
+            function () {
+                fetch(url + "eliminar/" + id, {
+                    method: 'PUT'
+                })
+                    .then(
+                        res => res.json()
+                    )
+                    .then(
+                        () => location.reload()
+                    );
+                alertify.success('Registro eliminado');
+            },
+            function () {
+                alertify.error('Eliminación cancelada');
+            }
+        );
+    }
+);
 
 // Procedimiento de editar
 let idForm = 0

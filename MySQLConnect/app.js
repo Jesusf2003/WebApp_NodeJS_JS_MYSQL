@@ -33,7 +33,7 @@ app.get("/", function (req, res) {
 
 // Listado general de datos
 app.get("/api/articulos", (req, res) => {
-  conexion.query("SELECT * FROM articulos", (error, filas) => {
+  conexion.query("SELECT * FROM articulos where estado = 'A'", (error, filas) => {
     if (error) {
       throw error;
     } else {
@@ -65,6 +65,7 @@ app.post("/api/articulos", (req, res) => {
     descripcion: req.body.descripcion,
     precio: req.body.precio,
     stock: req.body.stock,
+    estado: "A"
   };
   let sql = "INSERT INTO articulos SET ?";
   conexion.query(sql, data, function (error, results) {
@@ -100,10 +101,25 @@ app.put("/api/articulos/:id", (req, res) => {
   );
 });
 
-// Eliminar artículo
+// Eliminar artículo de la base de datos
 app.delete("/api/articulos/:id", (req, res) => {
   conexion.query(
     "DELETE FROM articulos WHERE id = ?",
+    [req.params.id],
+    function (error, filas) {
+      if (error) {
+        throw error;
+      } else {
+        res.send(filas);
+      }
+    }
+  );
+});
+
+// Eliminar por estado
+app.put("/api/articulos/eliminar/:id", (req, res) => {
+  conexion.query (
+    "UPDATE articulos SET estado = 'I' WHERE id = ?",
     [req.params.id],
     function (error, filas) {
       if (error) {

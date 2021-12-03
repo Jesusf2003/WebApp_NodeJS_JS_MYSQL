@@ -1,4 +1,8 @@
 -- Crear tablas
+create DATABASE apirest;
+
+-- Usar base de datos
+use apirest;
 
 -- Crear tabla artículos
 create table articulos(
@@ -6,10 +10,13 @@ create table articulos(
 	descripcion		varchar(100),
 	precio			decimal(10,2),
 	stock			int,
+	estado			char(1),
 	primary key (id)
 );
 
 -- El autoincrementable se puede especificar en cualquier momento
+-- Añadir campos: alter table articulos add estado char(1) after stock;
+update articulos set estado = 'A';
 
 -- Ver descripción de la tabla
 desc articulos;
@@ -29,7 +36,10 @@ values
 	('Azucar - 3 KG', 450.00, 20),
 	('Leche entera Sancor', 89.00, 36),
 	('Dulce de leche Sancor', 99.00, 50),
-	('Queso cremoso', 250.00, 60);
+	('Queso cremoso', 250.00, 60),
+	('Fideos tallarin Nicolini', 4.50, 50),
+	('Leche gloria en caja', 5.00, 50),
+	('Mantequilla Sello de Oro', 3.20, 50);
 
 -- Listar datos de las tablas
 select * from articulos;
