@@ -16,20 +16,38 @@ btnCrear.addEventListener("click", () => {
 });
 
 btnEditar.addEventListener("click", () => {
-  console.log("Acción de listar activda");
+  console.log("Acción de listar activada");
   option = 'editar';
 });
 
-fetch(MAIN_PATH
-).then(response => {
-  if (response.ok) {
-    return response.json();
+function eliminar(id) {
+  fetch(MAIN_PATH+"/id/"+id, {method: 'DELETE'});
+}
+
+async function showContent() {
+  const response = await fetch(MAIN_PATH, {method: 'GET', headers: {'Accept': 'application/json'}});
+  const btnEliminar = "";
+  const data = await response.json();
+
+  console.log(data);
+
+  let iterator = "<tr>";
+
+  for (let i in data) {
+    iterator += `
+        <td id="idclic-${data[i].IDCLI}">${data[i].IDCLI}</td>
+        <td>${data[i].NAMECLI}</td>
+        <td>${data[i].CELLCLI}</td>
+        <td>
+          <button>Eliminar</button>
+        </td>
+      </tr>
+    `
   }
-}).then(data => {
-  if (data) {
-    console.log(data);
-  }
-});
+  document.getElementById("dataset").innerHTML = iterator;
+}
+
+showContent();
 
 formTag.addEventListener('submit',
   (e) => {
