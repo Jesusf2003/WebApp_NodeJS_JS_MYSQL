@@ -7,5 +7,33 @@
   <title>CRUD Express</title>
 </head>
 <body>
+  <div id="overview">
+    <section id="show" class="show">
+      <h1>
+        <span>Listado de clientes</span>
+      </h1>
+      <div id="datatable">
+      </div>
+    </section>
+    <section class="save" id="save">
+      <h1 class="heading">
+        <span>Formulario de registro</span>
+      </h1>
+      <div id="form" class="row">
+        <form class="form">
+          <div class="inputbox">
+            <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
+            <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
+          </div>
+          <div class="inputbox">
+            <input type="tel" placeholder="Celular" id="CELLCLI" class="form-control">
+          </div>
+          <button id="btnCrear" type="submit" class="btn btn-secondary">Crear</button>
+          <button id="btnEditar" type="submit" class="btn btn-secondary">Editar</button>
+        </form>
+      </div>
+    </section>
+  </div>
+  <script src="js/index.js"></script>
 </body>
 </html>
