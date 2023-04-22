@@ -20,34 +20,53 @@ btnEditar.addEventListener("click", () => {
   option = 'editar';
 });
 
-function eliminar(id) {
-  fetch(MAIN_PATH+"/id/"+id, {method: 'DELETE'});
-}
-
 async function showContent() {
   const response = await fetch(MAIN_PATH, {method: 'GET', headers: {'Accept': 'application/json'}});
-  const btnEliminar = "";
   const data = await response.json();
 
   console.log(data);
 
-  let iterator = "<tr>";
-
+  const table = document.getElementById("clientList");
   for (let i in data) {
-    iterator += `
-        <td id="idclic-${data[i].IDCLI}">${data[i].IDCLI}</td>
-        <td>${data[i].NAMECLI}</td>
-        <td>${data[i].CELLCLI}</td>
-        <td>
-          <button>Eliminar</button>
-        </td>
-      </tr>
-    `
+    const newRow = table.insertRow(table.length);
+
+    const idCell = newRow.insertCell(0);
+    idCell.innerHTML = data[i].IDCLI;
+
+    const nameCell = newRow.insertCell(1);
+    nameCell.innerHTML = data[i].LNAMECLI + ", " + data[i].NAMECLI;
+
+    const cellCell = newRow.insertCell(2);
+    cellCell.innerHTML = data[i].CELLCLI;
+
+    const actionsCell = newRow.insertCell(3);
+    actionsCell.innerHTML = `
+      <a onClick='eliminar(this)'>Eliminar</a>
+      <a>Editar</a>
+    `;
   }
-  document.getElementById("dataset").innerHTML = iterator;
+}
+
+function eliminar(id) {
+  // fetch(MAIN_PATH+"/id/"+
+  let table = id.parentElement.parentElement;
+  let response = [table].map(
+    tr => {
+      return {
+        idcli: tr.children[0].innerText
+      };
+    }
+  )
+
+  let dataSelected = response[0].idcli;
+  fetch(MAIN_PATH + "/id/"+ dataSelected, {method: 'DELETE'});
 }
 
 showContent();
+
+async function showContentById(id) {
+  const response = await fetch(MAIN_PATH + "/id/"+ id, {method: 'GET', headers: {'Content-Type': 'application/json'}});
+}
 
 formTag.addEventListener('submit',
   (e) => {
