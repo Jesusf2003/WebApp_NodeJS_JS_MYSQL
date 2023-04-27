@@ -7,6 +7,8 @@ const namecli = document.getElementById("NAMECLI");
 const lnamecli = document.getElementById("LNAMECLI");
 const cellcli = document.getElementById("CELLCLI");
 
+const getModal = document.getElementById("exampleModal");
+
 var idValue;
 var option = '';
 
@@ -44,10 +46,20 @@ async function showContent() {
 
     const actionsCell = newRow.insertCell(4);
     actionsCell.innerHTML = `
-      <a onClick='eliminar(this)'>Eliminar</a>
-      <a onClick='passData(this)'>Editar</a>
+      <a class="btn btn-danger" onClick='eliminar(this)'>
+        <i class="bi bi-trash"></i>
+      </a>
+      <a class="btn btn-warning" onClick='passData(this)' data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="bi bi-pencil-fill"></i>
+      </a>
     `;
   }
+}
+
+function resetForm() {
+  document.getElementById("NAMECLI").value = "";
+  document.getElementById("LNAMECLI").value = "";
+  document.getElementById("CELLCLI").value = "";
 }
 
 function eliminar(id) {

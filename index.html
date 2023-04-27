@@ -4,37 +4,42 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="js/node_modules/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="js/node_modules/bootstrap-icons/font/bootstrap-icons.css">
   <title>CRUD Express</title>
 </head>
 <body>
-  <div id="overview">
-    <section id="show" class="show">
-      <h1>
-        <span>Listado de clientes</span>
-      </h1>
-      <div id="datatable">
-      </div>
-    </section>
-    <section class="save" id="save">
-      <h1 class="heading">
-        <span>Formulario de registro</span>
-      </h1>
-      <div id="form" class="row">
-        <form class="form">
-          <div class="inputbox">
-            <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
-            <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
+  <div id="content">
+    <!---->
+    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="bi bi-person-plus"></i>
+    </button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="resetForm();"></button>
           </div>
-          <div class="inputbox">
-            <input type="tel" placeholder="Celular" id="CELLCLI" class="form-control">
+          <div class="modal-body">
+            <h1 class="heading">
+              <span>Formulario de registro</span>
+            </h1>
+            <div id="form" class="row">
+              <form class="form">
+                <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
+                <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
+                <input type="tel" placeholder="Celular" id="CELLCLI" class="form-control">
+                <button id="btnCrear" type="submit" class="btn btn-primary">Crear</button>
+                <button id="btnEditar" type="submit" class="btn btn-warning">Editar</button>
+              </form>
+            </div>
           </div>
-          <button id="btnCrear" type="submit" class="btn btn-secondary">Crear</button>
-          <button id="btnEditar" type="submit" class="btn btn-secondary">Editar</button>
-        </form>
+        </div>
       </div>
-    </section>
-    <section class="show" id="show">
-      <table class="table" id="clientList">
+    </div>
+    <section>
+      <table class="table table-responsive table-striped" id="clientList">
         <thead>
           <tr>
             <th>#</th>
@@ -48,5 +53,6 @@
     </section>
   </div>
   <script src="js/index.js"></script>
+  <script src="js/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>
