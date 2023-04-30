@@ -2,10 +2,12 @@
 var express = require('express');
 var mysql = require('mysql');
 var cors = require('cors');
+var path = require('path');
 var app = express();
 
 // Usar librerías
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'static')));
 app.use(cors());
 
 var connection = mysql.createConnection(
@@ -34,7 +36,7 @@ app.listen(port, function() {
 
 // Main path
 app.get("/", function(req, res) {
-  res.send("Ruta inicial");
+	console.log("Ruta inicial")
 });
 
 // GET all clients
@@ -48,18 +50,6 @@ app.get("/api/clients", (req, res) => {
 		}
 	});
 });
-
-// GET client by id
-// app.get("/api/clients/id/:id", (req, res) => {
-// 	connection.query("SELECT * FROM client WHERE IDCLI=?", [req.params.id], (err, rows, fields) => {
-// 		if (err) {
-// 			throw err;
-// 		} else {
-// 			console.log(rows);
-// 			req.send(rows);
-// 		}
-// 	})
-// });
 
 // Post new client
 app.post("/api/clients", (req, res) => {
@@ -96,6 +86,29 @@ app.post("/api/clients/id/:id", (req, res) => {
 		}
 	});
 });
+
+app.post('/api/clients/auth', function (req, res) {
+	let user = req.body.NAMECLI;
+	let pass = req.body.CELLCLI;
+	if (user && pass) {
+		connection.query("SELECT * FROM client WHERE namecli = ? AND cellcli = ?", [user, pass], function(err, results, field) {
+			if (err) throw err;
+			if (results.length > 0) {
+				res.send(
+					{
+						success: true
+					}
+				)
+			} else if(results.length <= 0) {
+				res.send(
+					{
+						success: false
+					}
+				)
+			}
+		});
+	}
+})
 
 app.delete("/api/clients/id/:id", (req, res) => {
 	var id = req.params.id;

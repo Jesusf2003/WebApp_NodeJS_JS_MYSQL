@@ -10,26 +10,22 @@
 </head>
 <body>
   <div id="content">
-    <!---->
-    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button id="btnAdd" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       <i class="bi bi-person-plus"></i>
     </button>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Formulario de registro</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="resetForm();"></button>
           </div>
           <div class="modal-body">
-            <h1 class="heading">
-              <span>Formulario de registro</span>
-            </h1>
-            <div id="form" class="row">
+            <div id="form-client" class="row">
               <form class="form">
                 <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
                 <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
-                <input type="tel" placeholder="Celular" id="CELLCLI" class="form-control">
+                <input type="tel" placeholder="Celular" maxlength="9" id="CELLCLI" class="form-control">
                 <button id="btnCrear" type="submit" class="btn btn-primary">Crear</button>
                 <button id="btnEditar" type="submit" class="btn btn-warning">Editar</button>
               </form>

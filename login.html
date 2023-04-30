@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="js/node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="js/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+  <title>Login</title>
+</head>
+<body>
+  <section>
+    <div class="container" style="margin: 20px">
+      <form name="loginform">
+        <div class="mb-3">
+          <label for="userControlInput" class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control" id="userControlInput" name="user" placeholder="Nombre de usuario">
+        </div>
+        <div class="mb-3">
+          <label for="passwordControlInput" class="form-label">Contraseña</label>
+          <input type="password" maxlength="9" class="form-control" id="passwordControlInput" name="password" placeholder="Contraseña">
+        </div>
+        <div class="mb-3">
+          <button type="button" class="btn btn-outline-primary" onclick="go()">Ingresar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <script src="js/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

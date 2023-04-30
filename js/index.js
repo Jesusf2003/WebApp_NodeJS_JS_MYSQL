@@ -45,11 +45,12 @@ async function showContent() {
     cellCell.innerHTML = data[i].CELLCLI;
 
     const actionsCell = newRow.insertCell(4);
+
     actionsCell.innerHTML = `
       <a class="btn btn-danger" onClick='eliminar(this)'>
         <i class="bi bi-trash"></i>
       </a>
-      <a class="btn btn-warning" onClick='passData(this)' data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <a class="btn btn-warning" onClick='passData(this)' data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <i class="bi bi-pencil-fill"></i>
       </a>
     `;
