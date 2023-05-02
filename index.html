@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="content">
-    <button id="btnAdd" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button id="btnAdd" type="button" onclick="resetForm();" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       <i class="bi bi-person-plus"></i>
     </button>
     <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -21,13 +21,8 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="resetForm();"></button>
           </div>
           <div class="modal-body">
-            <div id="form-client" class="row">
-              <form class="form">
-                <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
-                <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
-                <input type="tel" placeholder="Celular" maxlength="9" id="CELLCLI" class="form-control">
-                <button id="btnCrear" type="submit" class="btn btn-primary">Crear</button>
-                <button id="btnEditar" type="submit" class="btn btn-warning">Editar</button>
+            <div class="row">
+              <form id="form-client" class="form">
               </form>
             </div>
           </div>

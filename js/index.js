@@ -11,16 +11,17 @@ const getModal = document.getElementById("exampleModal");
 
 var idValue;
 var option = '';
+var body = document.getElementById("form-client");
 
-btnCrear.addEventListener("click", () => {
-  console.log("Acción de listar activada");
-  option = 'crear';
-});
+// btnCrear.addEventListener("click", () => {
+//   console.log("Acción de listar activada");
+//   option = 'crear';
+// });
 
-btnEditar.addEventListener("click", () => {
-  console.log("Acción de listar activada");
-  option = 'editar';
-});
+// btnEditar.addEventListener("click", () => {
+//   console.log("Acción de listar activada");
+//   option = 'editar';
+// });
 
 async function showContent() {
   const response = await fetch(MAIN_PATH, {method: 'GET', headers: {'Accept': 'application/json'}});
@@ -58,6 +59,12 @@ async function showContent() {
 }
 
 function resetForm() {
+  body.innerHTML = `
+    <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
+    <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
+    <input type="tel" placeholder="Celular" maxlength="9" id="CELLCLI" class="form-control">  
+    <button id="btnCrear" type="submit" class="btn btn-primary">Crear</button>
+  `;
   document.getElementById("NAMECLI").value = "";
   document.getElementById("LNAMECLI").value = "";
   document.getElementById("CELLCLI").value = "";
@@ -91,6 +98,13 @@ function passData(id) {
     }
   );
   console.log(response);
+
+  body.innerHTML = `
+    <input type="text" placeholder="Nombres" id="NAMECLI" class="form-control">
+    <input type="text" placeholder="Apellidos" id="LNAMECLI" class="form-control">
+    <input type="tel" placeholder="Celular" maxlength="9" id="CELLCLI" class="form-control">
+    <button id="btnEditar" type="submit" class="btn btn-warning" onclick=' option = "editar";'>Editar</button>
+  `;
   this.idValue = response[0].idcli;
   document.getElementById("NAMECLI").value = response[0].namecli;
   document.getElementById("LNAMECLI").value = response[0].lnamecli;
