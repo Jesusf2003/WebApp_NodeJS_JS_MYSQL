@@ -1,5 +1,8 @@
-const MAIN_PATH = "http://localhost:3000/api/clients";
+const MAIN_PATH = "http://localhost:3000/api/";
 let results = '';
+const date = new Date();
+let currentDate = date.getFullYear()+ "-"+ (date.getMonth() + 1)+ "-"+ date.getDate()
+let currentDateFormatted = date.getDate()+ "/"+ (date.getMonth() + 1)+ "/"+ date.getFullYear();
 
 const formTag = document.querySelector("form");
 
@@ -13,18 +16,8 @@ var idValue;
 var option = '';
 var body = document.getElementById("form-client");
 
-// btnCrear.addEventListener("click", () => {
-//   console.log("Acción de listar activada");
-//   option = 'crear';
-// });
-
-// btnEditar.addEventListener("click", () => {
-//   console.log("Acción de listar activada");
-//   option = 'editar';
-// });
-
 async function showContent() {
-  const response = await fetch(MAIN_PATH, {method: 'GET', headers: {'Accept': 'application/json'}});
+  const response = await fetch(MAIN_PATH + 'clients', {method: 'GET', headers: {'Accept': 'application/json'}});
   const data = await response.json();
 
   console.log(data);
@@ -82,8 +75,23 @@ function eliminar(id) {
   )
 
   let dataSelected = response[0].idcli;
-  fetch(MAIN_PATH + "/id/"+ dataSelected, {method: 'DELETE'});
+  fetch(MAIN_PATH + 'clients' + "/id/"+ dataSelected, {method: 'DELETE'});
 }
+
+let dates = fetch(
+  MAIN_PATH + "dates/2020-01-01"
+).then(
+  res => res.json()
+).then(
+  data => {
+    console.log("Mostrando data: " +data)
+    if (data != null) {
+      document.getElementById("showDate").innerHTML = `<p>Hoy es ${data.DATECAL} - ${data.NAMECAL}</p>`
+    } else {
+      document.getElementById("showDate").innerHTML = `<p>Hoy es ${currentDateFormatted}</p>`
+    }
+  }
+);
 
 function passData(id) {
   let table = id.parentElement.parentElement;
@@ -127,7 +135,7 @@ formTag.addEventListener('submit',
           LNAMECLI: lnamecli.value,
           CELLCLI: cellcli.value
         }
-        fetch(MAIN_PATH, {
+        fetch(MAIN_PATH + 'clients', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -153,7 +161,7 @@ formTag.addEventListener('submit',
           CELLCLI: cellcli.value
         }
         console.log(data);
-        fetch(MAIN_PATH + '/id/'+ idValue, {
+        fetch(MAIN_PATH + 'clients' + '/id/'+ idValue, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
