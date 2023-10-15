@@ -1,85 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="resources/node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="resources/css/styles.css" />
-    <link rel="stylesheet" href="resources/css/estilos.css" />
-    <title>Principal</title>
-  </head>
-
-  <body>
-    <div id="overview">
-      <section class="order" id="order">
-        <h1 class="heading"><span>ordena</span> tu pedido</h1>
-        <div id="form" class="row">
-          <form class="form">
-            <div class="inputBox">
-              <input
-                id="USERPED"
-                placeholder="Nombre"
-                type="text"
-                class="form-control"
-              />
-              <input
-                id="EMAUSPED"
-                placeholder="Correo"
-                type="text"
-                class="form-control"
-              />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="resources/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="resources/css/styles.css" />
+  <title>Principal</title>
+</head>
+<body>
+  <div id="overview">
+    <section class="order" id="order">
+      <h1 class="heading mb-3"><span>Consulta</span> tu pedido</h1>
+      <div class="content">
+        <div id="form">
+          <form>
+            <div class="row mb-3">
+              <div class="col">
+                <input id="USERPED" placeholder="Nombres y apellidos" type="text" class="form-control" />
+              </div>
             </div>
-            <div class="inputBox">
-              <input
-                id="CELUSPED"
-                placeholder="Celular"
-                type="text"
-                class="form-control"
-              />
-              <input
-                id="FOODPED"
-                placeholder="Pedido"
-                type="text"
-                class="form-control"
-              />
+            <div class="row mb-3">
+              <div class="col">
+                <input id="EMAUSPED" placeholder="Correo" type="text" class="form-control" />
+              </div>
+              <div class="col">
+                <input id="CELUSPED" placeholder="Celular" type="text" class="form-control" />
+              </div>
             </div>
-            <textarea
-              id="MSGPED"
-              placeholder="Mensaje"
-              cols="30"
-              rows="10"
-              class="form-control"
-            ></textarea>
-            <button id="btnCrear" type="submit" class="btn btn-secondary">
+            <div class="row mb-3">
+              <div class="col">
+                <input id="FOODPED" placeholder="Pedido" type="text" class="form-control" />
+              </div>
+            </div>
+            <textarea id="MSGPED" placeholder="Mensaje" cols="30" rows="10" class="form-control mb-3"></textarea>
+            <button id="btnCrear" type="submit" class="btn btn-danger mb-3">
               Ordenar ahora
             </button>
           </form>
         </div>
-      </section>
-    </div>
-    <section class="copy" style="margin-top: 2em">
+      </div>
+    </section>
+    <section class="board" id="board">
+      <h1 class="body"><span>Tabla de datos</span></h1>
+      <div>
+        <table class="table table-danger table-striped mb-3">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nombres</th>
+              <th scope="col">Pedidos</th>
+            </tr>
+          </thead>
+          <tbody id="data">
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="copy">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <p>
-              <strong
-                >Copyright &copy; 2022. Elaborado por: Fernando Canales
-                Rodríguez</strong
-              >
+              <strong>Copyright &copy; 2022. Elaborado por: Fernando Canales
+                Rodríguez</strong>
             </p>
           </div>
         </div>
       </div>
     </section>
-    <script src="resources/js/bootstrap.bundle.min.js"></script>
-    <script src="resources/registro.js"></script>
-  </body>
+  </div>
+  <script src="resources/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="resources/registro.js"></script>
+</body>
+
 </html>
