@@ -24,31 +24,13 @@ formArticulo.addEventListener('submit',
 				alert("Asegúrese de que todos los campos estén completos");
 				return false;
 			} else {
-				console.log("Todos los campos están completos");
-				fetch(
-					url,
-					{
-						method: 'POST',
-						headers: {
-							'content-Type': 'application/json'
-						},
-						body: JSON.stringify(
-							{
-								USERPED: USERPED.value,
-								EMAUSPED: EMAUSPED.value,
-								CELUSPED: CELUSPED.value,
-								FOODPED: FOODPED.value,
-								MSGPED: MSGPED.value
-							}
-						)
-					}
-				)
-					.then(
-						response => response.json()
-					)
-					.then(
-						response => location.reload()
-					);
+				insertData({
+					USERPED: USERPED.value,
+					EMAUSPED: EMAUSPED.value,
+					CELUSPED: CELUSPED.value,
+					FOODPED: FOODPED.value,
+					MSGPED: MSGPED.value
+				});
 			}
 		} else if (opcion == 'editar') {
 			console.log("Activado el ");
@@ -62,6 +44,30 @@ function init() {
 
 tableBody.innerHTML = '';
 
+function insertData(data) {
+	fetch(url,
+		{
+			method: 'POST',
+			headers: {
+				'content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		}
+	)
+		.then(
+			response => response.json()
+		)
+		.then(
+			response => location.reload()
+		);
+}
+
+function deleteDataById(id) {
+	fetch(url + "/" + id, { method: 'DELETE' })
+		.then(res => res.text())
+		.then(res => console.log(res));
+}
+
 function getData() {
 	fetch(url, { method: 'GET', headers: { 'Content-Type': 'application/json' } })
 		.then(res => res.json())
@@ -72,18 +78,28 @@ function getData() {
 
 function buildTable(data) {
 	if (data.length > 0) {
-		let s = "";
 		data.forEach((data) => {
-			console.log(data);
-			s += `
+			tableBody.innerHTML += `
 			<tr>
-				<td>${data.IDPED}</td>
-				<td>${data.USERPED}</td>
-				<td>${data.MSGPED}</td>
-			</tr>`
-			tableBody.innerHTML = s;
+				<td>${data['IDPED']}</td>
+				<td>${data['USERPED']}</td>
+				<td>${data['MSGPED']}</td>
+				<td class="text-center">
+					<button type="button" class="btn btn-warning">
+						Editar
+					</button>
+					<button type="button" onClick='onDelete(this)' class="btn btn-danger">
+						Eliminar
+					</button>
+				</td>
+			</tr>`;
 		})
 	}
+}
+
+function onDelete(parent) {
+	var cell = document.getElementById("data").rows[0].cells.length;
+	console.log(cell);
 }
 
 init();

@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(255, 121, 25);
+  background-color: rgb(252, 123, 31);
 }
 
 section.order {
@@ -8,8 +8,11 @@ section.order {
 }
 
 section.board {
-  background-color: rgb(201, 19, 19);
-  padding: 0 10% 0 10%;
+  background-color: #c91313;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 h1.heading {
